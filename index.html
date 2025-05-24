@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rotgut | Official Links</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background texture -->
+  <div class="background"></div>
+
+  <!-- VHS tracking base -->
+  <video class="vhs-base" autoplay loop muted playsinline>
+    <source src="videos/Very Minor Tracking.mp4" type="video/mp4">
+  </video>
+
+  <!-- glitch overlay -->
+  <video id="vhs-overlay" class="vhs-overlay" autoplay muted playsinline style="display: none;">
+    <source id="vhs-source" src="" type="video/mp4">
+  </video>
+
+  <!-- band overlay -->
+  <div class="band-overlay"></div>
+
+  <!-- Main content -->
+  <div class="container">
+    <div class="header-block">
+      <div class="logo-bg-inside">
+        <img src="images/rotgut_logo.png" alt="Rotgut Logo" class="logo-inside" />
+      </div>
+      <h1>LINKS</h1>
+
+      <!-- Social icons -->
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61576181446297" target="_blank">
+          <img src="images/icons/facebook.svg" alt="Facebook">
+        </a>
+        <a href="https://instagram.com/rotgutband" target="_blank">
+          <img src="images/icons/instagram.svg" alt="Instagram">
+        </a>
+        <a href="https://rotgutofficial.bandcamp.com" target="_blank">
+          <img src="images/icons/bandcamp.svg" alt="Bandcamp">
+        </a>
+        <a href="https://www.youtube.com/channel/UCTDDPJ6juM_jU4Fei5n6obQ" target="_blank">
+          <img src="images/icons/youtube.svg" alt="YouTube">
+        </a>
+        <a href="https://rotgutofficial.bandcamp.com" target="_blank">
+          <img src="images/icons/spotify.svg" alt="Spotify">
+        </a>
+      </div>
+
+      <!-- Contact -->
+<div class="contact-block">
+  <div class="contact-content">
+    <img src="images/icons/email.svg" alt="Email Icon" />
+    <span class="contact-text">BOOKING:</span>
+      <span class="contact-value">ROTGUTBAND@GMAIL.COM</span>
+  </div>
+</div>
+
+<div class="contact-block">
+  <div class="contact-content">
+    <img src="images/icons/cassette.svg" alt="Cassette Icon">
+    <span class="contact-text">MERCH:</span>
+    <span class="contact-value">BANDCAMP</span>
+</div>
+</div>
+
+
+      <!-- Video header -->
+      <div class="video-header">
+        <h2 class="flicker-target">Return of the<br>Dead Without Eyes</h2>
+        <p class="flicker-target">Lyric Video</p>
+        <p class="flicker-target">From 24 oz CANTRIP</p>
+      </div>
+
+      <!-- CRT video frame -->
+      <div class="crt-wrapper">
+        <div class="crt-video">
+          <iframe src="https://www.youtube.com/embed/pbPq68ubU3E" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <img src="images/crt_overlay_blend.png" alt="CRT TV Overlay" class="crt-frame">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const glitchClips = [
+      "videos/Worn Rewind Video 8.mp4",
+      "videos/Medium Tracking.mp4",
+      "videos/VHS Magnetic Glitch.mp4"
+    ];
+    const glitchVideo = document.getElementById("vhs-overlay");
+    const glitchSource = document.getElementById("vhs-source");
+
+    function playRandomGlitch() {
+      const random = glitchClips[Math.floor(Math.random() * glitchClips.length)];
+      glitchSource.src = random;
+      glitchVideo.style.display = "block";
+      glitchVideo.load();
+      glitchVideo.onloadeddata = () => {
+        glitchVideo.play();
+        const duration = Math.floor(Math.random() * 3000) + 3000;
+        setTimeout(() => {
+          glitchVideo.pause();
+          glitchVideo.style.display = "none";
+        }, duration);
+      };
+    }
+
+    function scheduleNextGlitch() {
+      const delay = Math.floor(Math.random() * 15000) + 10000;
+      setTimeout(() => {
+        playRandomGlitch();
+        scheduleNextGlitch();
+      }, delay);
+    }
+
+    scheduleNextGlitch();
+  </script>
+
+  <script>
+    function randomFlicker(element, minDelay, maxDelay, mode = 'normal') {
+      const flicker = () => {
+        const next = Math.floor(Math.random() * (maxDelay - minDelay)) + minDelay;
+        if (mode === 'inverted') {
+          element.style.opacity = 0.2;
+          if (Math.random() < 0.05) {
+            element.style.opacity = 1;
+            setTimeout(() => {
+              element.style.opacity = 0.2;
+            }, 80);
+          }
+        } else {
+          element.style.opacity = Math.random() < 0.1 ? 0.3 : 1;
+        }
+        setTimeout(flicker, next);
+      };
+      flicker();
+    }
+
+    const flickerTargets = document.querySelectorAll('.flicker-target');
+    flickerTargets.forEach(el => {
+      if (el.tagName === 'H2') {
+        randomFlicker(el, 500, 1800, 'normal');
+      } else {
+        randomFlicker(el, 600, 2000, 'inverted');
+      }
+    });
+  </script>
+
+</body>
+</html>
