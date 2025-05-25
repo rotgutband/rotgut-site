@@ -9,7 +9,7 @@ html, body {
   position: relative;
   overflow-x: hidden;
 }
-@media (max-width: 480px) {
+@media (max-width: 480px) { 
   .logo-inside {
     transform: scale(1.2);
   }
