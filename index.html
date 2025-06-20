@@ -24,7 +24,7 @@
   <!-- band overlay -->
   <div class="band-overlay"></div>
 
-  <!-- Main content -->
+  <!-- Main content (centered text & links only) -->
   <div class="container">
     <div class="header-block">
       <div class="logo-bg-inside">
@@ -52,21 +52,21 @@
       </div>
 
       <!-- Contact -->
-<div class="contact-block">
-  <a href="mailto:rotgutband@gmail.com" class="contact-content">
-    <img src="images/icons/email.svg" alt="Email Icon" />
-    <span class="contact-text">BOOKING:</span>
-    <span class="contact-value">ROTGUTBAND@GMAIL.COM</span>
-  </a>
-</div>
+      <div class="contact-block">
+        <a href="mailto:rotgutband@gmail.com" class="contact-content">
+          <img src="images/icons/email.svg" alt="Email Icon" />
+          <span class="contact-text">BOOKING:</span>
+          <span class="contact-value">ROTGUTBAND@GMAIL.COM</span>
+        </a>
+      </div>
 
-<div class="contact-block">
-  <a href="https://rotgutofficial.bandcamp.com/merch" target="_blank" class="contact-content">
-    <img src="images/icons/cassette.svg" alt="Cassette Icon" />
-    <span class="contact-text">MERCH:</span>
-    <span class="contact-value">BANDCAMP</span>
-  </a>
-</div>
+      <div class="contact-block">
+        <a href="https://rotgutofficial.bandcamp.com/merch" target="_blank" class="contact-content">
+          <img src="images/icons/cassette.svg" alt="Cassette Icon" />
+          <span class="contact-text">MERCH:</span>
+          <span class="contact-value">BANDCAMP</span>
+        </a>
+      </div>
 
       <!-- Video header -->
       <div class="video-header">
@@ -74,17 +74,27 @@
         <p class="flicker-target">Lyric Video</p>
         <p class="flicker-target">From 24 oz CANTRIP</p>
       </div>
+    </div>
+  </div> <!-- END .container -->
 
-      <!-- CRT video frame -->
-      <div class="crt-wrapper">
-        <div class="crt-video">
-          <iframe src="https://www.youtube.com/embed/pbPq68ubU3E" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <img src="images/crt_overlay_blend.png" alt="CRT TV Overlay" class="crt-frame">
+  <!-- === CRT + TABLE SECTION (full width, outside container) === -->
+  <div class="tv-section">
+    <img src="images/tv_background.png" alt="" class="tv-bottom-bg" />
+
+    <div class="crt-wrapper">
+      <div class="crt-video">
+        <iframe src="https://www.youtube.com/embed/pbPq68ubU3E" frameborder="0" allowfullscreen></iframe>
       </div>
+      <img src="images/crt_overlay_blend.png" alt="CRT TV Overlay" class="crt-frame" />
+    </div>
+
+    <div class="tv-table-wrapper">
+      <img src="images/tv_table.png" alt="TV Table" class="tv-table" />
     </div>
   </div>
 
+
+  <!-- Glitch logic -->
   <script>
     const glitchClips = [
       "videos/Worn Rewind Video 8.mp4",
@@ -120,6 +130,7 @@
     scheduleNextGlitch();
   </script>
 
+  <!-- Flicker effect -->
   <script>
     function randomFlicker(element, minDelay, maxDelay, mode = 'normal') {
       const flicker = () => {
@@ -150,5 +161,12 @@
     });
   </script>
 
+  <script>
+    const vhs = document.getElementById('vhs-overlay');
+    vhs.addEventListener('ended', () => {
+      vhs.currentTime = 0;
+      vhs.play();
+    });
+  </script>
 </body>
 </html>
